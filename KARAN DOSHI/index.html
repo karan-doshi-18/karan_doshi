@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth overflow-x-hidden">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Karan Doshi -- Computer Science Student & Developer</title>
+  
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="Portfolio of Karan Doshi - First-Year Computer Science Student at SNJB College, Creative Developer, Web Designer, and Programmer." />
+  <meta name="author" content="Karan Doshi" />
+  <meta property="og:title" content="Karan Doshi -- Computer Science Student & Developer" />
+  <meta property="og:description" content="Explore Karan Doshi's portfolio, showcasing skills in Python, Web Development, React, UI/UX, and creative web projects." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Syne (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        screens: {
+          'xs': '375px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+          '2xl': '1536px',
+        },
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0C0C0C',
+              card: '#141416',
+              border: '#24242A',
+              purple: '#8B5CF6',
+              violet: '#6366F1',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+              pink: '#EC4899',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'spin-slow': 'spin 20s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'gradient-x': 'gradientX 6s ease infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(2deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', filter: 'blur(20px)' },
+              '50%': { opacity: '0.8', filter: 'blur(35px)' },
+            },
+            gradientX: {
+              '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+              '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Three.js for 3D Background & Visuals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- React & Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0C0C0C;
+      color: #F3F4F6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      selection-background-color: #8B5CF6;
+      selection-color: #FFFFFF;
+    }
+    
+    ::selection {
+      background: #8B5CF6;
+      color: #ffffff;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0C0C0C;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272A;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8B5CF6;
+    }
+
+    /* Glassmorphic utilities */
+    .glass-panel {
+      background: rgba(20, 20, 24, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.25);
+    }
+
+    /* Gradient Typography */
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #FFFFFF 0%, #C084FC 50%, #8B5CF6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 50%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FBBF24 50%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Sticky Stacking Cards Engine for All Devices */
+    .sticky-card {
+      position: sticky;
+      top: 80px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .sticky-card {
+        top: 100px;
+      }
+    }
+
+    /* Grid mesh background effect */
+    .bg-grid-pattern {
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Noise overlay */
+    .noise-bg {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body class="bg-[#0C0C0C] text-gray-100 antialiased relative overflow-x-hidden w-full">
+  <!-- Dynamic Noise & Grid Overlay -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-40"></div>
+  <div class="fixed inset-0 noise-bg pointer-events-none z-0"></div>
+
+  <!-- 3D Canvas Background Container -->
+  <div id="canvas-3d-bg" class="fixed inset-0 pointer-events-none z-0"></div>
+
+  <!-- React Root -->
+  <div id="root" class="relative z-10 w-full overflow-x-hidden"></div>
+
+  <!-- Main Pure Static Application Script -->
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect, useRef } = React;
+
+    function App() {
+      const [copiedPhone, setCopiedPhone] = useState(false);
+      const [selectedPhoto, setSelectedPhoto] = useState(null);
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+      const [isHovered, setIsHovered] = useState(false);
+
+      const phoneNumber = "8275348027";
+      const formattedPhone = "+91 8275348027";
+      const whatsappUrl = `https://wa.me/918275348027?text=${encodeURIComponent("Hi Karan! I visited your portfolio website and would like to talk about a project / connection.")}`;
+      const telUrl = `tel:${phoneNumber}`;
+
+      // Custom Cursor Listener
+      useEffect(() => {
+        const handleMouseMove = (e) => {
+          setCursorPos({ x: e.clientX, y: e.clientY });
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+      }, []);
+
+      // Initialize Three.js Ambient 3D Background
+      useEffect(() => {
+        const container = document.getElementById('canvas-3d-bg');
+        if (!container || typeof THREE === 'undefined') return;
+
+        container.innerHTML = '';
+        const isMobile = window.innerWidth < 768;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = isMobile ? 35 : 30;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        const particleCount = isMobile ? 350 : 700;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const color1 = new THREE.Color(0x8B5CF6);
+        const color2 = new THREE.Color(0x38BDF8);
+        const color3 = new THREE.Color(0xEC4899);
+
+        for (let i = 0; i < particleCount; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 80;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+
+          const mixedColor = color1.clone();
+          const rand = Math.random();
+          if (rand > 0.6) mixedColor.lerp(color2, Math.random());
+          else if (rand > 0.3) mixedColor.lerp(color3, Math.random());
+
+          colors[i * 3] = mixedColor.r;
+          colors[i * 3 + 1] = mixedColor.g;
+          colors[i * 3 + 2] = mixedColor.b;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+          size: isMobile ? 0.3 : 0.25,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.65,
+          blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        const shapeGeo = new THREE.TorusKnotGeometry(isMobile ? 4.5 : 6, 1.5, 80, 16);
+        const shapeMat = new THREE.MeshBasicMaterial({
+          color: 0x8B5CF6,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.15
+        });
+        const torusKnot = new THREE.Mesh(shapeGeo, shapeMat);
+        torusKnot.position.set(isMobile ? 0 : 18, isMobile ? 12 : 2, -10);
+        scene.add(torusKnot);
+
+        const octGeo = new THREE.OctahedronGeometry(isMobile ? 3 : 4, 1);
+        const octMat = new THREE.MeshBasicMaterial({
+          color: 0x38BDF8,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.18
+        });
+        const octahedron = new THREE.Mesh(octGeo, octMat);
+        octahedron.position.set(isMobile ? -10 : -20, -10, -5);
+        scene.add(octahedron);
+
+        let mouseX = 0;
+        let mouseY = 0;
+        const handlePointerMove = (e) => {
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          mouseX = (clientX / window.innerWidth - 0.5) * 2;
+          mouseY = (clientY / window.innerHeight - 0.5) * 2;
+        };
+
+        window.addEventListener('mousemove', handlePointerMove);
+        window.addEventListener('touchmove', handlePointerMove, { passive: true });
+
+        const handleResize = () => {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+        };
+        window.addEventListener('resize', handleResize);
+
+        let animationFrameId;
+        const animate = () => {
+          animationFrameId = requestAnimationFrame(animate);
+
+          particles.rotation.y += 0.0006;
+          particles.rotation.x += 0.0003;
+
+          torusKnot.rotation.x += 0.004;
+          torusKnot.rotation.y += 0.006;
+
+          octahedron.rotation.x -= 0.005;
+          octahedron.rotation.z += 0.003;
+
+          camera.position.x += (mouseX * 2 - camera.position.x) * 0.03;
+          camera.position.y += (-mouseY * 2 - camera.position.y) * 0.03;
+          camera.lookAt(scene.position);
+
+          renderer.render(scene, camera);
+        };
+
+        animate();
+
+        return () => {
+          window.removeEventListener('mousemove', handlePointerMove);
+          window.removeEventListener('touchmove', handlePointerMove);
+          window.removeEventListener('resize', handleResize);
+          cancelAnimationFrame(animationFrameId);
+          renderer.dispose();
+        };
+      }, []);
+
+      const handleCopyPhone = () => {
+        navigator.clipboard.writeText(phoneNumber);
+        setCopiedPhone(true);
+        setTimeout(() => setCopiedPhone(false), 2500);
+      };
+
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      });
+
+      return (
+        <div className="min-h-screen relative text-gray-100 font-sans selection:bg-purple-600 selection:text-white w-full overflow-x-hidden">
+          {/* Custom Physics Cursor Follower */}
+          <div 
+            className="fixed pointer-events-none z-50 transition-transform duration-75 ease-out transform -translate-x-1/2 -translate-y-1/2 hidden md:block"
+            style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
+          >
+            <div className={`w-8 h-8 rounded-full border border-purple-400/50 bg-purple-500/10 backdrop-blur-xs flex items-center justify-center transition-all duration-300 ${isHovered ? 'scale-150 border-purple-400 bg-purple-500/20' : 'scale-100'}`}>
+              <div className="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_#8B5CF6]"></div>
+            </div>
+          </div>
+
+          {/* NAVBAR */}
+          <header className="fixed top-0 left-0 right-0 z-40 px-3 xs:px-4 sm:px-6 py-2.5 sm:py-4 transition-all duration-300">
+            <div className="max-w-7xl mx-auto glass-panel rounded-2xl px-4 sm:px-6 py-2.5 sm:py-3.5 flex items-center justify-between shadow-2xl border border-white/10">
+              <a href="#hero" className="flex items-center space-x-2.5 sm:space-x-3 group">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-pink-500 flex items-center justify-center font-syne font-extrabold text-white text-base sm:text-lg shadow-lg group-hover:scale-105 transition-transform flex-shrink-0">
+                  KD
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-syne font-bold tracking-tight text-white group-hover:text-purple-300 transition-colors text-sm sm:text-base leading-tight">
+                    KARAN DOSHI
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-mono text-purple-400 tracking-wider uppercase">
+                    CS '28 • SNJB College
+                  </span>
+                </div>
+              </a>
+
+              <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium">
+                <a href="#about" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-purple-500 font-mono text-xs">01.</span> About
+                </a>
+                <a href="#skills" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-purple-500 font-mono text-xs">02.</span> Skills
+                </a>
+                <a href="#services" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-purple-500 font-mono text-xs">03.</span> Services
+                </a>
+                <a href="#projects" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-purple-500 font-mono text-xs">04.</span> Projects
+                </a>
+                <a href="#contact" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1.5">
+                  <span className="text-purple-500 font-mono text-xs">05.</span> Contact
+                </a>
+              </nav>
+
+              <div className="hidden md:flex items-center space-x-4">
+                <a 
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-medium text-xs text-white overflow-hidden group bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-lg shadow-purple-900/30 transition-all duration-300 hover:scale-[1.03]"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 absolute"></span>
+                    Let's Talk
+                  </span>
+                </a>
+              </div>
+
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden text-gray-300 hover:text-white p-2 rounded-xl focus:outline-none bg-white/5 border border-white/10 min-w-[44px] min-h-[44px] flex items-center justify-center active:scale-95 transition-transform"
+                aria-label="Toggle menu"
+              >
+                <i data-lucide={mobileMenuOpen ? "x" : "menu"} className="w-5 h-5"></i>
+              </button>
+            </div>
+
+            {mobileMenuOpen && (
+              <div className="md:hidden mt-2 max-w-7xl mx-auto glass-panel rounded-2xl p-5 shadow-2xl flex flex-col space-y-3 font-medium animate-fadeIn border border-purple-500/30">
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-gray-200 hover:text-purple-400 py-3 px-3 rounded-xl hover:bg-white/5 border-b border-gray-800/80 flex items-center justify-between text-base min-h-[44px]">
+                  <span>01. About Me</span>
+                  <i data-lucide="chevron-right" className="w-4 h-4 text-purple-400"></i>
+                </a>
+                <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="text-gray-200 hover:text-purple-400 py-3 px-3 rounded-xl hover:bg-white/5 border-b border-gray-800/80 flex items-center justify-between text-base min-h-[44px]">
+                  <span>02. Skills</span>
+                  <i data-lucide="chevron-right" className="w-4 h-4 text-purple-400"></i>
+                </a>
+                <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-gray-200 hover:text-purple-400 py-3 px-3 rounded-xl hover:bg-white/5 border-b border-gray-800/80 flex items-center justify-between text-base min-h-[44px]">
+                  <span>03. Services</span>
+                  <i data-lucide="chevron-right" className="w-4 h-4 text-purple-400"></i>
+                </a>
+                <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="text-gray-200 hover:text-purple-400 py-3 px-3 rounded-xl hover:bg-white/5 border-b border-gray-800/80 flex items-center justify-between text-base min-h-[44px]">
+                  <span>04. Projects</span>
+                  <i data-lucide="chevron-right" className="w-4 h-4 text-purple-400"></i>
+                </a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-gray-200 hover:text-purple-400 py-3 px-3 rounded-xl hover:bg-white/5 border-b border-gray-800/80 flex items-center justify-between text-base min-h-[44px]">
+                  <span>05. Contact</span>
+                  <i data-lucide="chevron-right" className="w-4 h-4 text-purple-400"></i>
+                </a>
+                <a 
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl text-center font-bold text-white mt-2 block shadow-lg shadow-purple-900/40 min-h-[48px] flex items-center justify-center gap-2"
+                >
+                  <i data-lucide="message-square" className="w-4 h-4"></i>
+                  <span>Contact via WhatsApp</span>
+                </a>
+              </div>
+            )}
+          </header>
+
+          {/* HERO SECTION */}
+          <section id="hero" className="min-h-screen pt-24 xs:pt-28 sm:pt-36 pb-16 sm:pb-20 flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              
+              <div className="lg:col-span-7 flex flex-col items-start space-y-4 sm:space-y-6 text-left w-full">
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full glass-panel border border-purple-500/30 text-purple-300 text-[11px] sm:text-xs font-mono tracking-wide shadow-inner max-w-full truncate">
+                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse flex-shrink-0"></span>
+                  <span className="truncate">1st Year CS Student • SNJB College</span>
+                </div>
+
+                <div className="space-y-2 w-full">
+                  <h1 className="font-syne text-3.5xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight sm:leading-[1.05] break-words">
+                    Hi, I'm <span className="text-gradient-purple underline decoration-purple-500/40 underline-offset-4 sm:underline-offset-8">Karan</span>
+                  </h1>
+                  
+                  <h2 className="font-mono text-xs xs:text-sm sm:text-base md:text-lg text-purple-400 tracking-wider font-semibold uppercase pt-1 sm:pt-2 break-words">
+                    FIRST-YEAR COMPUTER SCIENCE STUDENT & CREATIVE DEVELOPER
+                  </h2>
+                </div>
+
+                <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed font-normal">
+                  I'm Karan Doshi, a first-year Computer Science student at SNJB College, passionate about technology, web development, programming, and creating modern digital experiences.
+                </p>
+
+                <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4 pt-2 sm:pt-4 w-full xs:w-auto">
+                  <a 
+                    href="#projects"
+                    className="w-full xs:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-syne font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group min-h-[48px]"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <span>Explore Work</span>
+                    <i data-lucide="arrow-down-right" className="w-4 h-4 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"></i>
+                  </a>
+
+                  <a 
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full xs:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl glass-panel hover:bg-white/10 text-white font-syne font-bold text-xs sm:text-sm tracking-wide border border-gray-700 hover:border-purple-400 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group min-h-[48px]"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    <i data-lucide="message-square" className="w-4 h-4 text-emerald-400"></i>
+                    <span>Let's Work Together</span>
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 xs:gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-gray-800/80 w-full max-w-xl">
+                  <div>
+                    <div className="text-xl xs:text-2xl sm:text-3xl font-syne font-bold text-white">1st</div>
+                    <div className="text-[10px] xs:text-xs font-mono text-gray-400 truncate">Year CS Student</div>
+                  </div>
+                  <div>
+                    <div className="text-xl xs:text-2xl sm:text-3xl font-syne font-bold text-purple-400">5+</div>
+                    <div className="text-[10px] xs:text-xs font-mono text-gray-400 truncate">Services Offered</div>
+                  </div>
+                  <div>
+                    <div className="text-xl xs:text-2xl sm:text-3xl font-syne font-bold text-cyan-400">100%</div>
+                    <div className="text-[10px] xs:text-xs font-mono text-gray-400 truncate">Dedication</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="lg:col-span-5 flex justify-center relative w-full pt-4 lg:pt-0">
+                <div className="absolute w-56 sm:w-72 h-56 sm:h-72 bg-purple-600/30 rounded-full blur-3xl animate-pulse-glow -z-10"></div>
+                <div className="absolute w-48 sm:w-60 h-48 sm:h-60 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-glow bottom-0 right-0 -z-10"></div>
+
+                <div className="relative group cursor-pointer w-full max-w-[280px] xs:max-w-xs sm:max-w-sm lg:max-w-md mx-auto" onClick={() => setSelectedPhoto('assets/images/karan-3.jpg')}>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 rounded-3xl blur-md opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-x"></div>
+
+                  <div className="relative glass-panel rounded-3xl p-3 sm:p-4 overflow-hidden border border-gray-700/50 shadow-2xl">
+                    <div className="relative h-[320px] xs:h-[360px] sm:h-[400px] md:h-[440px] rounded-2xl overflow-hidden">
+                      <img 
+                        src="assets/images/karan-3.jpg" 
+                        alt="Karan Doshi - Computer Science Student" 
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 glass-panel px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono text-white flex items-center gap-1.5 border border-white/20">
+                        <i data-lucide="sparkles" className="w-3 h-3 text-yellow-400"></i>
+                        <span>Karan Doshi</span>
+                      </div>
+
+                      <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-left">
+                        <div className="text-[10px] sm:text-xs font-mono text-purple-300">SNJB College • Computer Science</div>
+                        <div className="text-base sm:text-lg font-syne font-bold text-white">Karan Doshi</div>
+                        <div className="text-[11px] sm:text-xs text-gray-300">Creative Developer & Tech Enthusiast</div>
+                      </div>
+                    </div>
+
+                    <div className="absolute -bottom-2 -right-2 glass-panel px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-mono text-purple-300 border border-purple-500/40 shadow-xl flex items-center gap-1.5 animate-float">
+                      <i data-lucide="code-2" className="w-3.5 h-3.5 text-purple-400"></i>
+                      <span>Python & Web Dev</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div className="absolute bottom-3 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
+              <a href="#about" className="flex flex-col items-center gap-1.5 text-[10px] sm:text-xs font-mono text-gray-400 hover:text-purple-400">
+                <span>SCROLL</span>
+                <div className="w-4 h-7 sm:w-5 sm:h-8 rounded-full border-2 border-gray-600 flex justify-center pt-1">
+                  <div className="w-1 h-1.5 bg-purple-400 rounded-full animate-bounce"></div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          {/* ABOUT ME SECTION */}
+          <section id="about" className="py-16 sm:py-24 md:py-28 px-4 sm:px-6 relative z-10">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-10 sm:mb-16">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[11px] sm:text-xs uppercase tracking-wider">
+                  <i data-lucide="user" className="w-3.5 h-3.5"></i>
+                  <span>01 / ABOUT ME</span>
+                </div>
+                
+                <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
+                  About <span className="text-gradient-purple">Me</span>
+                </h2>
+
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] sm:text-xs max-w-full truncate">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+                  <span className="truncate">1st Year CS Student • SNJB College</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div className="lg:col-span-7 space-y-6">
+                  <div className="glass-panel rounded-3xl p-5 sm:p-8 border border-gray-800 shadow-xl space-y-6">
+                    <p className="text-gray-200 text-base sm:text-lg md:text-xl leading-relaxed font-normal">
+                      "Hi, I'm Karan Doshi. I have recently started my first year of engineering and chosen Computer Science as my field. I am currently studying at SNJB College and building my skills in programming, web development, and modern technologies. I enjoy creating websites, experimenting with new ideas, and turning concepts into real digital projects. This portfolio represents my journey, skills, projects, and the things I am learning along the way."
+                    </p>
+
+                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 pt-4 border-t border-gray-800">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 sm:p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex-shrink-0">
+                          <i data-lucide="graduation-cap" className="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-syne font-bold text-white text-xs sm:text-sm">SNJB College</h4>
+                          <p className="text-[11px] sm:text-xs text-gray-400">First-Year Computer Science</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 sm:p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex-shrink-0">
+                          <i data-lucide="code" className="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-syne font-bold text-white text-xs sm:text-sm">Web & Programming</h4>
+                          <p className="text-[11px] sm:text-xs text-gray-400">Python, JS, React & HTML/CSS</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 sm:p-2.5 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20 flex-shrink-0">
+                          <i data-lucide="palette" className="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-syne font-bold text-white text-xs sm:text-sm">UI/UX Design</h4>
+                          <p className="text-[11px] sm:text-xs text-gray-400">Modern & Clean Interfaces</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                          <i data-lucide="shield-check" className="w-4 h-4 sm:w-5 sm:h-5"></i>
+                        </div>
+                        <div>
+                          <h4 className="font-syne font-bold text-white text-xs sm:text-sm">Cybersecurity</h4>
+                          <p className="text-[11px] sm:text-xs text-gray-400">Fundamentals & Security</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
+                  <div 
+                    className="relative group rounded-2xl overflow-hidden h-40 xs:h-48 sm:h-56 cursor-pointer border border-gray-800 hover:border-purple-500 transition-all duration-300 shadow-lg"
+                    onClick={() => setSelectedPhoto('assets/images/karan-1.jpg')}
+                  >
+                    <img src="assets/images/karan-1.jpg" alt="Karan Doshi Night Vibe" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5 sm:p-3">
+                      <span className="text-[10px] sm:text-xs font-mono text-purple-300">Creative Energy</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="relative group rounded-2xl overflow-hidden h-40 xs:h-48 sm:h-56 cursor-pointer border border-gray-800 hover:border-purple-500 transition-all duration-300 shadow-lg sm:mt-6"
+                    onClick={() => setSelectedPhoto('assets/images/karan-4.jpg')}
+                  >
+                    <img src="assets/images/karan-4.jpg" alt="Karan Doshi Royal Enfield" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5 sm:p-3">
+                      <span className="text-[10px] sm:text-xs font-mono text-pink-300">Tech & Passion</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="relative group rounded-2xl overflow-hidden h-40 xs:h-48 sm:h-56 cursor-pointer border border-gray-800 hover:border-purple-500 transition-all duration-300 shadow-lg sm:-mt-6"
+                    onClick={() => setSelectedPhoto('assets/images/karan-2.jpg')}
+                  >
+                    <img src="assets/images/karan-2.jpg" alt="Karan Doshi Neon Studio" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5 sm:p-3">
+                      <span className="text-[10px] sm:text-xs font-mono text-cyan-300">Aesthetics</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="relative group rounded-2xl overflow-hidden h-40 xs:h-48 sm:h-56 cursor-pointer border border-gray-800 hover:border-purple-500 transition-all duration-300 shadow-lg"
+                    onClick={() => setSelectedPhoto('assets/images/karan-3.jpg')}
+                  >
+                    <img src="assets/images/karan-3.jpg" alt="Karan Doshi Ferrari Jacket" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-2.5 sm:p-3">
+                      <span className="text-[10px] sm:text-xs font-mono text-emerald-300">Confidence</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* SKILLS SECTION */}
+          <section id="skills" className="py-16 sm:py-24 md:py-28 px-4 sm:px-6 relative z-10 bg-black/40">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-10 sm:mb-16">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[11px] sm:text-xs uppercase tracking-wider">
+                  <i data-lucide="cpu" className="w-3.5 h-3.5"></i>
+                  <span>02 / TECH STACK & SKILLS</span>
+                </div>
+                
+                <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
+                  Skills & <span className="text-gradient-purple">Tools</span>
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base max-w-xl">
+                  Technologies and tools I work with to build modern, responsive, and secure digital projects.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-purple-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="code" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/20">Programming</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-purple-300 transition-colors">Python</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Core programming language for problem-solving, algorithms, and backend scripting.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-purple-500 to-indigo-500 h-full w-[85%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-orange-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 group-hover:bg-orange-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="layout" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-full border border-orange-500/20">Frontend</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-orange-300 transition-colors">HTML</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Semantic layout structure for modern web applications and landing pages.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 h-full w-[95%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-blue-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="palette" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">Styling</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-blue-300 transition-colors">CSS</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Responsive layouts, glassmorphism, flexbox/grid, keyframe animations, and styling.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-full w-[90%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-yellow-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition-colors flex-shrink-0">
+                      <i data-lucide="terminal" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-yellow-400 bg-yellow-500/10 px-2.5 py-1 rounded-full border border-yellow-500/20">Core Language</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-yellow-300 transition-colors">JavaScript</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Dynamic logic, DOM manipulation, asynchronous programming, and interactive features.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-yellow-500 to-amber-400 h-full w-[85%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="atom" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-full border border-cyan-500/20">Framework</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-cyan-300 transition-colors">React</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Building interactive user interfaces, components, state management, and web apps.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[80%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-emerald-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="globe" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Full-Stack</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-emerald-300 transition-colors">Web Development</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">End-to-end web architecture, performance optimization, and cross-device responsiveness.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full w-[90%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-pink-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 group-hover:bg-pink-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="sparkles" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-full border border-pink-500/20">Design</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-pink-300 transition-colors">UI/UX</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Designing clean, aesthetically pleasing, and user-friendly digital experiences.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-pink-500 to-rose-400 h-full w-[85%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-red-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 group-hover:bg-red-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="git-branch" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-red-400 bg-red-500/10 px-2.5 py-1 rounded-full border border-red-500/20">Version Control</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-red-300 transition-colors">Git & GitHub</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Source code management, repository hosting, branching, and team collaboration.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-red-500 to-orange-500 h-full w-[85%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors flex-shrink-0">
+                      <i data-lucide="shield" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/20">Security</span>
+                  </div>
+                  <h3 className="font-syne font-bold text-lg sm:text-xl text-white mb-1.5 sm:mb-2 group-hover:text-indigo-300 transition-colors">Cybersecurity Fundamentals</h3>
+                  <p className="text-xs text-gray-400 mb-3 sm:mb-4 leading-relaxed">Understanding web security principles, authentication basics, and secure code practices.</p>
+                  <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full w-[75%] rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SERVICES SECTION */}
+          <section id="services" className="py-16 sm:py-24 md:py-28 px-4 sm:px-6 relative z-10">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-10 sm:mb-16">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[11px] sm:text-xs uppercase tracking-wider">
+                  <i data-lucide="layers" className="w-3.5 h-3.5"></i>
+                  <span>03 / WHAT I OFFER</span>
+                </div>
+                
+                <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
+                  My <span className="text-gradient-purple">Services</span>
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base max-w-xl">
+                  Professional services for businesses, students, creators, and personal brands.
+                </p>
+              </div>
+
+              <div className="space-y-4 sm:space-y-6">
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:shadow-purple-950/20">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-500/60 group-hover:text-purple-400 transition-colors flex-shrink-0">01</span>
+                    <div>
+                      <h3 className="font-syne font-bold text-xl sm:text-2xl text-white group-hover:text-purple-300 transition-colors mb-1.5 sm:mb-2">
+                        Website Development
+                      </h3>
+                      <p className="text-gray-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Modern, responsive and visually attractive websites for businesses, portfolios and personal brands.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between w-full md:w-auto gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-gray-800/80">
+                    <span className="text-[10px] sm:text-xs font-mono text-purple-400 bg-purple-500/10 px-3 py-1.5 rounded-full border border-purple-500/20">Responsive & Fast</span>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-purple-600 text-white transition-colors border border-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                      <i data-lucide="arrow-up-right" className="w-5 h-5"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:shadow-purple-950/20">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-500/60 group-hover:text-purple-400 transition-colors flex-shrink-0">02</span>
+                    <div>
+                      <h3 className="font-syne font-bold text-xl sm:text-2xl text-white group-hover:text-purple-300 transition-colors mb-1.5 sm:mb-2">
+                        UI/UX Design
+                      </h3>
+                      <p className="text-gray-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Clean and modern interfaces focused on visual appeal, usability and responsive design.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between w-full md:w-auto gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-gray-800/80">
+                    <span className="text-[10px] sm:text-xs font-mono text-pink-400 bg-pink-500/10 px-3 py-1.5 rounded-full border border-pink-500/20">Clean Aesthetics</span>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-purple-600 text-white transition-colors border border-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                      <i data-lucide="arrow-up-right" className="w-5 h-5"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:shadow-purple-950/20">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-500/60 group-hover:text-purple-400 transition-colors flex-shrink-0">03</span>
+                    <div>
+                      <h3 className="font-syne font-bold text-xl sm:text-2xl text-white group-hover:text-purple-300 transition-colors mb-1.5 sm:mb-2">
+                        Portfolio Websites
+                      </h3>
+                      <p className="text-gray-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Premium personal portfolio websites for students, developers, creators and freelancers.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between w-full md:w-auto gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-gray-800/80">
+                    <span className="text-[10px] sm:text-xs font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1.5 rounded-full border border-cyan-500/20">Personal Branding</span>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-purple-600 text-white transition-colors border border-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                      <i data-lucide="arrow-up-right" className="w-5 h-5"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:shadow-purple-950/20">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-500/60 group-hover:text-purple-400 transition-colors flex-shrink-0">04</span>
+                    <div>
+                      <h3 className="font-syne font-bold text-xl sm:text-2xl text-white group-hover:text-purple-300 transition-colors mb-1.5 sm:mb-2">
+                        Business Websites
+                      </h3>
+                      <p className="text-gray-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Professional websites designed to give small businesses a strong online presence.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between w-full md:w-auto gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-gray-800/80">
+                    <span className="text-[10px] sm:text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">Growth & Presence</span>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-purple-600 text-white transition-colors border border-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                      <i data-lucide="arrow-up-right" className="w-5 h-5"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 hover:shadow-2xl hover:shadow-purple-950/20">
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    <span className="font-mono text-2xl sm:text-3xl font-extrabold text-purple-500/60 group-hover:text-purple-400 transition-colors flex-shrink-0">05</span>
+                    <div>
+                      <h3 className="font-syne font-bold text-xl sm:text-2xl text-white group-hover:text-purple-300 transition-colors mb-1.5 sm:mb-2">
+                        Custom Projects
+                      </h3>
+                      <p className="text-gray-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Creative web and software projects built according to specific requirements.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between w-full md:w-auto gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-gray-800/80">
+                    <span className="text-[10px] sm:text-xs font-mono text-yellow-400 bg-yellow-500/10 px-3 py-1.5 rounded-full border border-yellow-500/20">Tailored Solutions</span>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-white/5 hover:bg-purple-600 text-white transition-colors border border-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                      <i data-lucide="arrow-up-right" className="w-5 h-5"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* PROJECTS SECTION */}
+          <section id="projects" className="py-16 sm:py-24 md:py-28 px-4 sm:px-6 relative z-10 bg-black/50">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-10 sm:mb-16">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[11px] sm:text-xs uppercase tracking-wider">
+                  <i data-lucide="rocket" className="w-3.5 h-3.5"></i>
+                  <span>04 / FEATURED WORK</span>
+                </div>
+                
+                <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-white">
+                  Featured <span className="text-gradient-purple">Projects</span>
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base max-w-xl">
+                  Scroll through selected work featuring responsive business websites, digital concepts, and CS projects.
+                </p>
+              </div>
+
+              <div className="space-y-6 sm:space-y-12">
+                <div className="sticky-card glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-purple-500/30 shadow-2xl bg-[#141418]/95 overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div className="lg:col-span-6 space-y-4 sm:space-y-6">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                        <span className="px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[10px] sm:text-xs">
+                          Project 01
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-[10px] sm:text-xs">
+                          Business Website
+                        </span>
+                      </div>
+
+                      <h3 className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-white break-words">
+                        E_GLOBALS TOURS AND TRAVELS
+                      </h3>
+
+                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        A modern travel and tourism website created with a premium interface, responsive design and interactive sections.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1 sm:pt-2">
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">React</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Tailwind CSS</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">UI/UX</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Web Development</span>
+                      </div>
+
+                      <div className="pt-2 sm:pt-4">
+                        <a 
+                          href={whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-syne font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-purple-600/30 w-full sm:w-auto min-h-[44px]"
+                        >
+                          <span>Inquire About Website</span>
+                          <i data-lucide="external-link" className="w-4 h-4"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="lg:col-span-6 h-[220px] xs:h-[260px] sm:h-[300px] md:h-[320px] rounded-2xl bg-gradient-to-tr from-purple-900/40 via-indigo-900/30 to-black p-4 sm:p-6 border border-purple-500/20 relative overflow-hidden flex flex-col justify-between group">
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-colors"></div>
+                      
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-2.5">
+                        <div className="flex items-center space-x-1.5 sm:space-x-2">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-gray-400 truncate">eglobals-travels.com</span>
+                      </div>
+
+                      <div className="flex-1 flex flex-col items-center justify-center text-center space-y-2 sm:space-y-3 py-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-purple-600/20 border border-purple-400/40 flex items-center justify-center text-purple-300 group-hover:scale-110 transition-transform flex-shrink-0">
+                          <i data-lucide="globe" className="w-6 h-6 sm:w-8 sm:h-8 animate-spin-slow"></i>
+                        </div>
+                        <h4 className="font-syne font-bold text-white text-base sm:text-lg">Travel & Tourism Portal</h4>
+                        <p className="text-[11px] sm:text-xs text-gray-400 max-w-xs">Interactive destinations, booking inquiries, and responsive mobile layouts.</p>
+                      </div>
+
+                      <div className="flex justify-between items-center text-[9px] sm:text-[10px] font-mono text-purple-300 border-t border-gray-800/80 pt-2">
+                        <span>STATUS: COMPLETED</span>
+                        <span>CLIENT: E_GLOBALS</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sticky-card glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-cyan-500/30 shadow-2xl bg-[#141418]/95 overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div className="lg:col-span-6 space-y-4 sm:space-y-6">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                        <span className="px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[10px] sm:text-xs">
+                          Project 02
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 font-mono text-[10px] sm:text-xs">
+                          Personal Business
+                        </span>
+                      </div>
+
+                      <h3 className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-white break-words">
+                        Digital Growth Hub
+                      </h3>
+
+                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        A digital services concept focused on website development, design and online business solutions.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1 sm:pt-2">
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">HTML5 / CSS3</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">JavaScript</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Web Services</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">UI/UX Concept</span>
+                      </div>
+
+                      <div className="pt-2 sm:pt-4">
+                        <a 
+                          href={whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-syne font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-cyan-600/30 w-full sm:w-auto min-h-[44px]"
+                        >
+                          <span>Explore Digital Concept</span>
+                          <i data-lucide="external-link" className="w-4 h-4"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="lg:col-span-6 h-[220px] xs:h-[260px] sm:h-[300px] md:h-[320px] rounded-2xl bg-gradient-to-tr from-cyan-900/40 via-blue-900/30 to-black p-4 sm:p-6 border border-cyan-500/20 relative overflow-hidden flex flex-col justify-between group">
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl group-hover:bg-purple-500/30 transition-colors"></div>
+                      
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-2.5">
+                        <div className="flex items-center space-x-1.5 sm:space-x-2">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-mono text-gray-400 truncate">digitalgrowthhub.app</span>
+                      </div>
+
+                      <div className="flex-1 flex flex-col items-center justify-center text-center space-y-2 sm:space-y-3 py-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-cyan-600/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform flex-shrink-0">
+                          <i data-lucide="trending-up" className="w-6 h-6 sm:w-8 sm:h-8"></i>
+                        </div>
+                        <h4 className="font-syne font-bold text-white text-base sm:text-lg">Growth & Analytics Visualizer</h4>
+                        <p className="text-[11px] sm:text-xs text-gray-400 max-w-xs">Digital solutions designed to elevate local brands and personal projects.</p>
+                      </div>
+
+                      <div className="flex justify-between items-center text-[9px] sm:text-[10px] font-mono text-cyan-300 border-t border-gray-800/80 pt-2">
+                        <span>CONCEPT: ONLINE SERVICES</span>
+                        <span>CREATOR: KARAN DOSHI</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="sticky-card glass-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-pink-500/30 shadow-2xl bg-[#141418] overflow-hidden">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div className="lg:col-span-6 space-y-4 sm:space-y-6">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                        <span className="px-2.5 py-1 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-400 font-mono text-[10px] sm:text-xs">
+                          Project 03
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-[10px] sm:text-xs">
+                          Personal Projects
+                        </span>
+                      </div>
+
+                      <h3 className="font-syne font-extrabold text-2xl sm:text-3xl md:text-4xl text-white break-words">
+                        Student Developer Projects
+                      </h3>
+
+                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        A collection of programming and web development projects created while learning Computer Science.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1 sm:pt-2">
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Python</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Git & GitHub</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">Cybersecurity</span>
+                        <span className="px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 text-[11px] sm:text-xs font-mono">SNJB CS Lab</span>
+                      </div>
+
+                      <div className="pt-2 sm:pt-4">
+                        <a 
+                          href={whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-syne font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shadow-pink-600/30 w-full sm:w-auto min-h-[44px]"
+                        >
+                          <span>View Code Repository</span>
+                          <i data-lucide="external-link" className="w-4 h-4"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="lg:col-span-6 h-[220px] xs:h-[260px] sm:h-[300px] md:h-[320px] rounded-2xl bg-gradient-to-tr from-pink-900/40 via-purple-900/30 to-black p-4 sm:p-6 border border-pink-500/20 relative overflow-hidden flex flex-col justify-between group font-mono text-[11px] sm:text-xs">
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/20 rounded-full blur-2xl group-hover:bg-emerald-500/30 transition-colors"></div>
+                      
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-2.5">
+                        <div className="flex items-center space-x-1.5 sm:space-x-2">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] text-gray-400">snjb-cs-lab.py</span>
+                      </div>
+
+                      <div className="flex-1 flex flex-col justify-center space-y-1.5 sm:space-y-2 py-3 text-gray-300 overflow-hidden">
+                        <div className="text-purple-400 truncate"># Karan Doshi - First Year CS Student</div>
+                        <div className="text-emerald-400 truncate">import <span className="text-white">python, web_dev, cybersecurity</span></div>
+                        <div className="text-gray-400 truncate"><span className="text-pink-400">def</span> <span className="text-yellow-300">build_future</span>():</div>
+                        <div className="pl-3 sm:pl-4 text-cyan-300 truncate">skills = ["Python", "JS", "React", "HTML/CSS"]</div>
+                        <div className="pl-3 sm:pl-4 text-cyan-300 truncate">return "Modern Digital Experiences"</div>
+                        <div className="text-emerald-400 flex items-center gap-2 pt-1">
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+                          <span className="truncate">Output: Successfully Executed</span>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between items-center text-[9px] sm:text-[10px] text-pink-300 border-t border-gray-800/80 pt-2">
+                        <span>COURSE: COMPUTER SCIENCE</span>
+                        <span>COLLEGE: SNJB</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CONTACT SECTION */}
+          <section id="contact" className="py-16 sm:py-24 md:py-28 px-4 sm:px-6 relative z-10 overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-purple-600/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+            <div className="max-w-5xl mx-auto glass-panel rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-14 border border-purple-500/40 shadow-2xl text-center space-y-6 sm:space-y-8 relative">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 font-mono text-[11px] sm:text-xs uppercase tracking-wider">
+                <i data-lucide="message-square" className="w-3.5 h-3.5"></i>
+                <span>GET IN TOUCH</span>
+              </div>
+
+              <h2 className="font-syne text-3xl xs:text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+                Let's Work <span className="text-gradient-purple">Together</span>
+              </h2>
+
+              <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                "Have an idea or need a website? Let's create something amazing together."
+              </p>
+
+              <div className="glass-card rounded-2xl p-5 sm:p-6 max-w-lg mx-auto border border-gray-700/60 space-y-2 text-center">
+                <div className="font-syne font-bold text-xl sm:text-2xl text-white">Karan Doshi</div>
+                <div className="text-xs sm:text-sm font-mono text-purple-400">First-Year Computer Science Student</div>
+                <div className="text-[11px] sm:text-xs text-gray-400">SNJB College • Department of Computer Science</div>
+                <div className="text-xs sm:text-sm font-mono text-emerald-400 pt-2 flex items-center justify-center gap-2">
+                  <i data-lucide="phone" className="w-4 h-4"></i>
+                  <span>{formattedPhone}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col xs:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4 w-full">
+                <a 
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full xs:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-syne font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-emerald-600/30 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2.5 min-h-[48px]"
+                >
+                  <i data-lucide="message-circle" className="w-5 h-5"></i>
+                  <span>Contact Me (WhatsApp)</span>
+                </a>
+
+                <a 
+                  href={telUrl}
+                  className="w-full xs:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-syne font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2.5 min-h-[48px]"
+                >
+                  <i data-lucide="phone-call" className="w-5 h-5"></i>
+                  <span>Direct Phone Call</span>
+                </a>
+
+                <button 
+                  onClick={handleCopyPhone}
+                  className="w-full xs:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl glass-panel hover:bg-white/10 text-gray-200 font-syne font-bold text-xs sm:text-sm border border-gray-700 transition-all flex items-center justify-center gap-2 min-h-[48px]"
+                >
+                  <i data-lucide="copy" className="w-4 h-4"></i>
+                  <span>{copiedPhone ? "Copied 8275348027!" : "Copy Phone"}</span>
+                </button>
+              </div>
+
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer className="py-8 sm:py-12 border-t border-gray-800/80 px-4 sm:px-6 relative z-10 text-center text-gray-400 text-[11px] sm:text-xs font-mono">
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                &copy; {new Date().getFullYear()} Karan Doshi. First-Year Computer Science Student • SNJB College.
+              </div>
+              <div className="flex items-center space-x-4">
+                <a href="#hero" className="hover:text-purple-400 transition-colors">Back to Top &uarr;</a>
+              </div>
+            </div>
+          </footer>
+
+          {/* PHOTO LIGHTBOX MODAL */}
+          {selectedPhoto && (
+            <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn" onClick={() => setSelectedPhoto(null)}>
+              <div className="relative max-w-[95vw] sm:max-w-3xl max-h-[90vh] rounded-2xl sm:rounded-3xl overflow-hidden border border-purple-500/40 p-2 glass-panel" onClick={(e) => e.stopPropagation()}>
+                <button 
+                  onClick={() => setSelectedPhoto(null)}
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2.5 rounded-full bg-black/70 text-white hover:bg-purple-600 transition-colors z-20 border border-white/20 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                >
+                  <i data-lucide="x" className="w-5 h-5 sm:w-6 sm:h-6"></i>
+                </button>
+                <img src={selectedPhoto} alt="Karan Doshi Preview" className="w-full h-full object-contain rounded-xl sm:rounded-2xl max-h-[80vh]" />
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
